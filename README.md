@@ -1,7 +1,7 @@
 # Gemini Post Maker  
 Generates a matchday overview automatically.
 
-# Proces  
+# Proces (generator.py)  
 1. import libraries  
 2. creates a class to store match data  
 3. creates a function that gets the title of the matchday
