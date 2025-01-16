@@ -21,8 +21,8 @@ Generates a matchday overview automatically.
 17. make that amount of posts  
 
 # Logic  
-`Amount of posts to make = matches // 3 (+1 if matches%3>0)`  
-`Amount of matches on current post = 3 if matches - (post * 3) > 3 else matches % 3`  
+- `Amount of posts to make = matches // 3 (+1 if matches%3>0)`  
+- `Amount of matches on current post = 3 if matches - (post * 3) > 3 else matches % 3`  
 
 # Libraries  
 - os -> to clear screen  
