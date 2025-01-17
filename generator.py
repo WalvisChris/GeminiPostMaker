@@ -148,10 +148,10 @@ logo = logo.resize((logo_width // 4, logo_height // 4), Image.Resampling.LANCZOS
 
 # Fonts
 try:
-    font_headline = ImageFont.truetype(os.path.join(os.getcwd(), "res/headline.ttf"), size=170)
-    font_gemini = ImageFont.truetype(os.path.join(os.getcwd(), "res/gemini.ttf"), size=100)
-    font_enemy = ImageFont.truetype(os.path.join(os.getcwd(), "res/cairo.ttf"), size=80)
-    font_info = ImageFont.truetype(os.path.join(os.getcwd(), "res/cairo.ttf"), size=45)
+    font_headline = ImageFont.truetype(os.path.join(os.getcwd(), "res/fonts/headline.ttf"), size=170)
+    font_gemini = ImageFont.truetype(os.path.join(os.getcwd(), "res/fonts/gemini.ttf"), size=100)
+    font_enemy = ImageFont.truetype(os.path.join(os.getcwd(), "res/fonts/cairo.ttf"), size=80)
+    font_info = ImageFont.truetype(os.path.join(os.getcwd(), "res/fonts/cairo.ttf"), size=45)
 except IOError as e:
     print(get_error(f"Lettertypen konden niet geladen worden: ({e})"))
     font_headline = ImageFont.load_default()
