@@ -137,7 +137,8 @@ with open("res/city.json", "r") as json_file:
     cities = json.load(json_file)
     print(get_succes("Steden geladen."))
 
-matches = load_matches("18-01-2025")
+datum = str(input("Voer de gewenste datum in (dd-mm-jjjj): "))
+matches = load_matches(datum)
 print(get_succes(str(len(matches)) + " wedstrijden zijn geladen."))
 
 # Images
