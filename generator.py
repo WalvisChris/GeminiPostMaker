@@ -14,6 +14,9 @@ class Match:
         self.city = city
         self.time = time
 
+    def __str__(self):
+        return f"{self.home} vs {self.away} - {self.time}"
+
 def next_saturday_string() -> str:
     today = datetime.date.today()
     today_weekday = today.weekday()
@@ -79,6 +82,7 @@ def load_matches(date: str):
 
                 match = Match(atHome, team.upper(), away, city, time)
                 matches.append(match)
+                print(get_debug(f"Loaded match: {match}"))
     
     return matches
 
@@ -92,11 +96,16 @@ def generate_result(image: Image, index: int) -> Image:
     info = next_saturday_string()
     draw.text((get_centered_x(draw, info, font_info), 210), info, fill="white", font=font_info)
 
-    amount_of_matches_on_this_post = 3 if len(matches) - (index * 3) > 3 else len(matches) % 3
+    amount_of_matches_on_this_post = 3 if len(matches) - (index * 3) >= 3 else len(matches) % 3 # dit klopt nog niet
+
+    print(get_debug(f"'amount_of_matches_on_this_post' is {amount_of_matches_on_this_post} for post {index+1}"))
+
     for i in range(amount_of_matches_on_this_post):
         match = matches[index * 3 + i]
         draw_match(new_image, draw, 450+(i*500), match.atHome, match.home, match.away, match.city, match.time)
-    
+
+        print(get_debug(f"drawing match {match} to post {index+1}"))
+
     return new_image
 
 def normalize_team_name(team_name: str) -> str:
@@ -121,6 +130,9 @@ def get_error(s: str) -> str:
 
 def get_succes(s: str) -> str:
     return "[\033[92mSUCCES\033[0m] " + s
+
+def get_debug(s: str) -> str:
+    return "[\033[33mDEBUG\033[0m] " + s
 
 month_to_string = ["JAN", "FEB", "MAA", "APR", "MEI", "JUN", "JUL", "AUG", "SEP", "OKT", "NOV", "DEC"]
 cities = {}
@@ -164,6 +176,8 @@ except IOError as e:
 posts = len(matches) // 3
 if len(matches) % 3 != 0:
     posts += 1
+
+print(get_debug(f"making {posts} posts."))
 
 for i in range(posts):
     result_image = generate_result(source, i)
